@@ -41,9 +41,9 @@ Para poder observar todos los directorios de los usuarios lo que podríamos hace
 
 ## Ejercicio 4
 
-Desarrolle una aplicación que permita hacer de wrapper de los distintos comandos empleados en Linux para el manejo de ficheros y directorios.
+Desarrolle una aplicación `Wrapper` que permita hacer de wrapper de los distintos comandos empleados en Linux para el manejo de ficheros y directorios.
 
-### Check
+### check
 
 Crearemos un comando con `yargs` llamado `check` que tiene como parámetro una ruta, `path`, que será obligatoria y de tipo `string`. Este comando nos dirá si la ruta es un directorio o un archivo.
 
@@ -55,16 +55,31 @@ Usaremos entonces el método `lstat` y le pasaremos la ruta recibida por línea 
 
 ### makeDirectory
 
-Crearemos un comando con `yargs` llamado `makeDirectory` que tiene como parámetro una ruta, `path`, que será obligatoria y de tipo `string`. Este comando creará un nuevo directorio. Con el método `mkdir` de `fs` crearemos el directorio pasandole como parámetro la ruta recibida por línea de comando. Comprobaremos si existe un error, si existe retornaremos el mensaje de error, en caso contrario mostraremos un mensaje indicando que se ha creado el directorio.
+Crearemos un comando con `yargs` llamado `makeDirectory` que tiene como parámetro una ruta, `path`, que será obligatoria y de tipo `string`. Este comando creará un nuevo directorio. 
+
+Con el método `mkdir` de `fs` crearemos el directorio pasandole como parámetro la ruta recibida por línea de comando. Comprobaremos si existe un error, si existe retornaremos el mensaje de error, en caso contrario mostraremos un mensaje indicando que se ha creado el directorio.
 
 ### listFiles
 
-Crearemos un comando con `yargs` llamado `listFiles` que tiene como parámetro la ruta del directorio, `path`, que será obligatorio y de tipo `string`. Primero comprobaremos con la función `isDirectory` de `lstatSync` si la ruta dada es un directorio. Si no es un directorio mostraremos un mensaje indicando el error. En caso contrario usaremos `readdir` que se utiliza para leer el contenido de un directorio determinado. La función `readdir` tiene como parámetros la ruta del directorio y un callback. El callback contiene `err` y `files`, este último sería un array de strings de los nombres de los ficheros que contiene el directorio. Por lo que usaremos un `forEach` para recorrer `files` y mostrarlos por pantalla.
+Crearemos un comando con `yargs` llamado `listFiles` que tiene como parámetro la ruta del directorio, `path`, que será obligatorio y de tipo `string`. 
+
+Primero comprobaremos con la función `isDirectory` de `lstatSync` si la ruta dada es un directorio. Si no es un directorio mostraremos un mensaje indicando el error. En caso contrario usaremos `readdir` que se utiliza para leer el contenido de un directorio determinado. La función `readdir` tiene como parámetros la ruta del directorio y un callback. El callback contiene `err` y `files`, este último sería un array de strings de los nombres de los ficheros que contiene el directorio. Por lo que usaremos un `forEach` para recorrer `files` y mostrarlos por pantalla.
 
 ### read
 
-Crearemos un comando con `yargs` llamado `read` que tiene como parámetro la ruta del archivo que queremos leer. Usaremos la función `readFile` para leer el contenido del archivo. La función tiene como parámetros la ruta del archivo, una opción para la codificación del archivos y un callback. El callback tiene un `err` y la `data` que tiene el contenido del archivo. Comprobaremos si existe algún error, si hay algun error devolvemos el mensaje de error, en caso contrario mostramos el contenido del archivo.
+Crearemos un comando con `yargs` llamado `read` que tiene como parámetro la ruta del archivo que queremos leer. 
+
+Usaremos la función `readFile` para leer el contenido del archivo. La función tiene como parámetros la ruta del archivo, una opción para la codificación del archivos y un callback. El callback tiene un `err` y la `data` que tiene el contenido del archivo. Comprobaremos si existe algún error, si hay algun error devolvemos el mensaje de error, en caso contrario mostramos el contenido del archivo.
 
 ### remove
 
-Crearemos un comando con `yargs` llamado `remove` que tiene como parámetro la ruta del directorio o el archivo que queremos borrar. Usaremos la función `rm` de `fs` que tiene como parámetros la ruta del directorio o archivo, las opciones y un callback. Le pasaremos a la función la ruta recibida por línea de comando, pondremos como opción `recursive` igual a `true` para poder borrar directorios y su contenido, y un callback indicando un error si es que se produce o un mensaje indicando que se ha borrado correctamente.
+Crearemos un comando con `yargs` llamado `remove` que tiene como parámetro la ruta del directorio o el archivo que queremos borrar. 
+
+Usaremos la función `rm` de `fs` que tiene como parámetros la ruta del directorio o archivo, las opciones y un callback. Le pasaremos a la función la ruta recibida por línea de comando, pondremos como opción `recursive` igual a `true` para poder borrar directorios y su contenido, y un callback indicando un error si es que se produce o un mensaje indicando que se ha borrado correctamente.
+
+
+### move
+
+Creamos un comando con `yargs` llamado `move` que tiene como parámetro dos rutas: una de origen y otra de destino. 
+
+Crearemos el proceso con la función `spawn` pasandole como parámetros las dos rutas. Cuando se termine un proceso mostraremos por pantalla la ruta de origen y de destino.
