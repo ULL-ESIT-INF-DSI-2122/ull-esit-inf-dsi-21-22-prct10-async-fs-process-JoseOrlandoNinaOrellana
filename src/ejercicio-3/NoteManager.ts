@@ -22,7 +22,7 @@ export class NoteManager {
      * @returns Boolean indicando si exista una nota con ese título
      */
     exists(user: string, title: string): boolean {
-        if(fs.existsSync('notes/' + user + '/' + title + '.json'))
+        if(fs.existsSync('./src/ejercicio-3/notes/' + user + '/' + title + '.json'))
             return true;
         return false;
     }
@@ -34,10 +34,10 @@ export class NoteManager {
      */
     writeNote(user: string, note: Note): string {
         if(!this.exists(user, note.title)) {
-            if(!fs.existsSync('notes/' + user))
+            if(!fs.existsSync('./src/ejercicio-3/notes/' + user))
                 this.createFolder(user);
 
-            fs.writeFileSync('notes/' + user + '/' + note.title + '.json', JSON.stringify(note, null, 2), 'utf-8');
+            fs.writeFileSync('./src/ejercicio-3/notes/' + user + '/' + note.title + '.json', JSON.stringify(note, null, 2), 'utf-8');
             return this.putColor('green', 'New note added!');
         }
         else
@@ -52,8 +52,8 @@ export class NoteManager {
         let output: string = '';
         let note: Note;
         output += this.putColor('green', 'Your notes') + '\n';
-        fs.readdirSync('notes/' + user + '/').forEach(fileName => {
-            const file = fs.readFileSync('notes/' + user + '/' + fileName);
+        fs.readdirSync('./src/ejercicio-3/notes/' + user + '/').forEach(fileName => {
+            const file = fs.readFileSync('./src/ejercicio-3/notes/' + user + '/' + fileName);
             note = JSON.parse(file.toString());
             output += this.putColor(note.color, note.title) + '\n';
         });
@@ -69,7 +69,7 @@ export class NoteManager {
         let output: string = '';
 
         if(this.exists(user, title)) {
-            const file = fs.readFileSync('notes/' + user + '/' + title + '.json');
+            const file = fs.readFileSync('./src/ejercicio-3/notes/' + user + '/' + title + '.json');
             let note: Note = JSON.parse(file.toString());
             output += this.putColor(note.color, note.title) + '\n';
             output += this.putColor(note.color, note.body);
@@ -86,7 +86,7 @@ export class NoteManager {
      */
     removeNote(user: string, title: string): string {
         if(this.exists(user, title)) {
-            fs.unlinkSync('notes/' + user + '/' + title + '.json');
+            fs.unlinkSync('./src/ejercicio-3/notes/' + user + '/' + title + '.json');
             return this.putColor('green', 'Note removed!');
         }
         else
