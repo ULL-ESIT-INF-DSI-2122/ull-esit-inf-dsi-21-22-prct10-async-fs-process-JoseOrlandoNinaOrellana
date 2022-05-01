@@ -1,0 +1,103 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>ull-esit-inf-dsi-21-22-prct10-async-fs-process-joseorlandoninaorellana</title><meta name="description" content="Documentation for ull-esit-inf-dsi-21-22-prct10-async-fs-process-joseorlandoninaorellana"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">ull-esit-inf-dsi-21-22-prct10-async-fs-process-joseorlandoninaorellana</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1> ull-esit-inf-dsi-21-22-prct10-async-fs-process-joseorlandoninaorellana </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#informe-práctica-10-dsi" id="informe-práctica-10-dsi" style="color: inherit; text-decoration: none;">
+  <h1>Informe Práctica 10 DSI</h1>
+</a>
+
+<a href="#ejercicio-1" id="ejercicio-1" style="color: inherit; text-decoration: none;">
+  <h2>Ejercicio 1</h2>
+</a>
+<p>El método <code>access</code> de <code>fs</code> se usa para comprobar los permisos de un archivo o directorio. Tiene como parámetros una ruta, un modo y un callback. El modo puede tener como valor <code>constants.F_OK</code>, <code>constants.R_OK</code>, <code>constants.W_OK</code> y <code>constants.X_OK</code>. El valor predeterminado es <code>constants.F_OK</code>.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Constant</th>
+<th align="center">Descripción</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">F_OK</td>
+<td align="center">Flag que comprueba si un fichero existe</td>
+</tr>
+<tr>
+<td align="center">R_OK</td>
+<td align="center">Flag que comprueba si el fichero puede ser leído</td>
+</tr>
+<tr>
+<td align="center">W_OK</td>
+<td align="center">Flag que comprueba si se puede escribir en el fichero</td>
+</tr>
+<tr>
+<td align="center">X_OK</td>
+<td align="center">Flag que comprueba si el fichero puede ser ejecutado</td>
+</tr>
+</tbody></table>
+
+<a href="#ejercicio-2" id="ejercicio-2" style="color: inherit; text-decoration: none;">
+  <h2>Ejercicio 2</h2>
+</a>
+
+<a href="#con-pipe" id="con-pipe" style="color: inherit; text-decoration: none;">
+  <h3>Con pipe</h3>
+</a>
+<p>Crearemos un comando con <code>yargs</code> llamado countWords que tendrá como parámetros obligatorios el nombre del fichero y la palabra.</p>
+<p>Comprobaremos con el <code>access</code> si el fichero existe pasando como parámetro el ubicación del fichero y con la constante <code>F_OK</code>. En caso de erro lanzaremos un mensaje por patalla. En caso contrario crearemos los procesos con el <code>spawn</code>. El primero será el proceso <code>cat</code> que  tendrá como parámetro el nombre del fichero. El segundo será el proceso <code>grep</code> que tendrá como parámetro la palabra a contar. Con <code>pipe</code> conectaremos la salida del <code>cat</code> con la entrada del <code>grep</code>.</p>
+<p><img src="https://gyazo.com/41f7d010af22a17c10f4818dc7015a89.png" alt=""></p>
+
+<a href="#sin-pipe" id="sin-pipe" style="color: inherit; text-decoration: none;">
+  <h3>Sin pipe</h3>
+</a>
+<p>Sin pipe es igual que al anterior solo que en vez de crear dos procesos solo crearemos uno, <code>grep</code>, y a este le pasaremos como parámetros el la parlabra y el nombre del fichero.</p>
+<p><img src="https://gyazo.com/b7fcb6b57350150dbeee14d5544507c5.png" alt=""></p>
+
+<a href="#ejercicio-3" id="ejercicio-3" style="color: inherit; text-decoration: none;">
+  <h2>Ejercicio 3</h2>
+</a>
+<p>Crearemos una clase llamada <code>WatcherNotes</code> que tendrá dos métodos. El primer método <code>watchFolderUser</code> que tendrá como parámetro la ruta del directorio del usuario. Usaremos <code>watch</code> que tiene como parámetros la ruta y el <code>listener</code>. El <code>listener</code> tiene el tipo de evento y el nombre del archivo que dessecandena el evento. Hay dos tipos de eventos: <code>rename</code> y <code>change</code>.</p>
+<p>Si el tipo de evento es <code>rename</code> signfica que se ha creado o borrado un nota. Compobramos si el fichero existe, si es así significa que se ha creado un nueva nota. Mostramos un mensaje indicando que se ha creado una nueva nota. En caso de que no exista la nota significa que se ha borrado esa nota. Si el tipo de evento es <code>change</code> significa que una nota se ha editado.</p>
+<p>El segundo método <code>viewFile</code> recibe como parámetro la ruta de la nota. Esta función crea un proceso <code>cat</code> que lee el contenido de la nota y lo muestra por pantalla. Se llamará a esta función cada vez que se modifique una nota o se crea una nueva nota.</p>
+<p><img src="https://gyazo.com/fab718aa28e522562c8c53c4b23f224f.png" alt=""></p>
+<p>Para poder observar todos los directorios de los usuarios lo que podríamos hacer es utilizar <code>watch</code>, pero esta vez especificando la ruta donde estan todas las carpetas de los usuarios y activando un opción <code>recursive</code> que permite observar subdirectorios.</p>
+
+<a href="#ejercicio-4" id="ejercicio-4" style="color: inherit; text-decoration: none;">
+  <h2>Ejercicio 4</h2>
+</a>
+<p>Desarrolle una aplicación <code>Wrapper</code> que permita hacer de wrapper de los distintos comandos empleados en Linux para el manejo de ficheros y directorios.</p>
+
+<a href="#check" id="check" style="color: inherit; text-decoration: none;">
+  <h3>check</h3>
+</a>
+<p>Crearemos un comando con <code>yargs</code> llamado <code>check</code> que tiene como parámetro una ruta, <code>path</code>, que será obligatoria y de tipo <code>string</code>. Este comando nos dirá si la ruta es un directorio o un archivo.</p>
+<p>El método <code>lstat</code> de <code>fs</code> nos permite ver información sobre un enlace simbólico que hace referencia a un archivo o directorio. Esta función tendrá como parámetros la ruta y un callback. El callback contendría un <code>err</code> y un objeto <code>Stats</code> que contiene los detalles de la ruta del archivo.</p>
+<p>El objeto <code>Stats</code> tiene una función <code>isFile</code> que comprueba si es un fichero yla función <code>isDirectory</code> que comprueba que es un directorio.</p>
+<p>Usaremos entonces el método <code>lstat</code> y le pasaremos la ruta recibida por línea de comando, comprobaremos si existe algún error, y luego comprobaremos con la funciones <code>isFile</code> y <code>isDirectory</code> para saber si es un archivo o un directorio.</p>
+
+<a href="#makedirectory" id="makedirectory" style="color: inherit; text-decoration: none;">
+  <h3>makeDirectory</h3>
+</a>
+<p>Crearemos un comando con <code>yargs</code> llamado <code>makeDirectory</code> que tiene como parámetro una ruta, <code>path</code>, que será obligatoria y de tipo <code>string</code>. Este comando creará un nuevo directorio. </p>
+<p>Con el método <code>mkdir</code> de <code>fs</code> crearemos el directorio pasandole como parámetro la ruta recibida por línea de comando. Comprobaremos si existe un error, si existe retornaremos el mensaje de error, en caso contrario mostraremos un mensaje indicando que se ha creado el directorio.</p>
+
+<a href="#listfiles" id="listfiles" style="color: inherit; text-decoration: none;">
+  <h3>listFiles</h3>
+</a>
+<p>Crearemos un comando con <code>yargs</code> llamado <code>listFiles</code> que tiene como parámetro la ruta del directorio, <code>path</code>, que será obligatorio y de tipo <code>string</code>. </p>
+<p>Primero comprobaremos con la función <code>isDirectory</code> de <code>lstatSync</code> si la ruta dada es un directorio. Si no es un directorio mostraremos un mensaje indicando el error. En caso contrario usaremos <code>readdir</code> que se utiliza para leer el contenido de un directorio determinado. La función <code>readdir</code> tiene como parámetros la ruta del directorio y un callback. El callback contiene <code>err</code> y <code>files</code>, este último sería un array de strings de los nombres de los ficheros que contiene el directorio. Por lo que usaremos un <code>forEach</code> para recorrer <code>files</code> y mostrarlos por pantalla.</p>
+
+<a href="#read" id="read" style="color: inherit; text-decoration: none;">
+  <h3>read</h3>
+</a>
+<p>Crearemos un comando con <code>yargs</code> llamado <code>read</code> que tiene como parámetro la ruta del archivo que queremos leer. </p>
+<p>Usaremos la función <code>readFile</code> para leer el contenido del archivo. La función tiene como parámetros la ruta del archivo, una opción para la codificación del archivos y un callback. El callback tiene un <code>err</code> y la <code>data</code> que tiene el contenido del archivo. Comprobaremos si existe algún error, si hay algun error devolvemos el mensaje de error, en caso contrario mostramos el contenido del archivo.</p>
+
+<a href="#remove" id="remove" style="color: inherit; text-decoration: none;">
+  <h3>remove</h3>
+</a>
+<p>Crearemos un comando con <code>yargs</code> llamado <code>remove</code> que tiene como parámetro la ruta del directorio o el archivo que queremos borrar. </p>
+<p>Usaremos la función <code>rm</code> de <code>fs</code> que tiene como parámetros la ruta del directorio o archivo, las opciones y un callback. Le pasaremos a la función la ruta recibida por línea de comando, pondremos como opción <code>recursive</code> igual a <code>true</code> para poder borrar directorios y su contenido, y un callback indicando un error si es que se produce o un mensaje indicando que se ha borrado correctamente.</p>
+
+<a href="#move" id="move" style="color: inherit; text-decoration: none;">
+  <h3>move</h3>
+</a>
+<p>Creamos un comando con <code>yargs</code> llamado <code>move</code> que tiene como parámetro dos rutas: una de origen y otra de destino. </p>
+<p>Crearemos el proceso con la función <code>spawn</code> pasandole como parámetros las dos rutas. Cuando se termine un proceso mostraremos por pantalla la ruta de origen y de destino.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Modules</a></li><li class=" tsd-kind-module"><a href="modules/ejercicio_3_Note.html">ejercicio-<wbr/>3/<wbr/>Note</a></li><li class=" tsd-kind-module"><a href="modules/ejercicio_3_NoteManager.html">ejercicio-<wbr/>3/<wbr/>Note<wbr/>Manager</a></li><li class=" tsd-kind-module"><a href="modules/ejercicio_3_WatcherNotes.html">ejercicio-<wbr/>3/<wbr/>Watcher<wbr/>Notes</a></li><li class=" tsd-kind-module"><a href="modules/ejercicio_4_Wrapper.html">ejercicio-<wbr/>4/<wbr/>Wrapper</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

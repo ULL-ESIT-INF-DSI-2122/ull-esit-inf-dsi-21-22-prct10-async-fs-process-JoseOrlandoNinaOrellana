@@ -3,6 +3,9 @@ import { WatcherNotes } from './WatcherNotes';
 
 const watcher = new WatcherNotes();
 
+/**
+ * Comando watcherUserNotes
+ */
 yargs.command({
     command: 'watcherUserNotes',
     describe: 'Watch all notes of an user',

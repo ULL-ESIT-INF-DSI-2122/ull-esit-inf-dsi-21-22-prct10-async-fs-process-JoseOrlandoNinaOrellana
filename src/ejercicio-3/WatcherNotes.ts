@@ -1,7 +1,15 @@
 import { existsSync, watch } from 'fs';
 import { spawn } from 'child_process';
 
+/**
+ * Clase WatcherNotes
+ * Observa las notas de los usuarios
+ */
 export class WatcherNotes {
+    /**
+     * Observa cambios en una carpeta de un usario
+     * @param path Ruta de la carpeta de notas de un usuario
+     */
     watchFolderUser(path: string) {
         watch(path, (eventType, fileName) => {
             if(eventType === 'rename')
@@ -22,6 +30,10 @@ export class WatcherNotes {
         });
     }
 
+    /**
+     * Muestra el contenido del fichero
+     * @param fileName Nombre del fichero
+     */
     viewFile(fileName: string) {
         const cat = spawn('cat', [`${fileName}`]);
         console.log('Contenido de ' + fileName + ':');

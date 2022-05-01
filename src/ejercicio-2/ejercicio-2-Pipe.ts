@@ -2,6 +2,9 @@ import * as yargs from 'yargs';
 import { access, constants } from 'fs';
 import { spawn } from 'child_process';
 
+/**
+ * Comando countWords con pipe
+ */
 yargs.command({
     command: 'countWords',
     describe: 'Count the words of a file',
