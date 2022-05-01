@@ -1,4 +1,15 @@
 {
-    "entryPoints": [],
+    "entryPoints": [
+        "src/ejercicio-1/ejercicio-1.ts",
+        "src/ejercicio-2/ejercicio-2-Pipe.ts",
+        "src/ejercicio-2/ejercicio-2-NoPipe.ts",
+        "src/ejercicio-3/Note.ts",
+        "src/ejercicio-3/NoteCommands.ts",
+        "src/ejercicio-3/NoteManager.ts",
+        "src/ejercicio-3/WatchCommands.ts",
+        "src/ejercicio-3/WatcherNotes.ts",
+        "src/ejercicio-4/Wrapper.ts",
+        "src/ejercicio-4/WrapperCommands.ts"
+    ],
     "out": "./docs"
 }
