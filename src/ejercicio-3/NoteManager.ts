@@ -114,8 +114,3 @@ export class NoteManager {
         return text;
     }
 };
-
-let no: Note = new Note('NoteExample', 'tee', 'green');
-
-let t = new NoteManager();
-console.log(t.writeNote('juan', no));
